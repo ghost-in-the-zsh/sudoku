@@ -34,9 +34,10 @@ setup(
     keywords='sudoku solver backtracking algorithm',
     classifiers=(
         # https://pypi.org/classifiers/
-        'Development Status :: 1 - Planning',
+        'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Intended Audience :: End Users/Desktop',
+        'Intended Audience :: Education',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Natural Language :: English',
         'Operating System :: OS Independent',
@@ -45,6 +46,8 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3 Only',
-        'Topic :: Utilities'
+        'Topic :: Utilities',
+        'Topic :: Games/Entertainment :: Board Games',
+        'Topic :: Games/Entertainment :: Puzzle Games'
     ),
 )
