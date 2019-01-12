@@ -12,7 +12,11 @@ from sudoku.validators import real_positive_number
 
 
 def parse_arguments() -> ap.Namespace:
-    parser = ap.ArgumentParser(description='A sudoku solver')
+    parser = ap.ArgumentParser(
+        description='A sudoku solver',
+        formatter_class=ap.ArgumentDefaultsHelpFormatter,
+        epilog='This program uses a backtracking algorithm.'
+    )
     parser.add_argument(
         '-f',
         '--file',
