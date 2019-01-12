@@ -97,6 +97,11 @@ class Board:
         return ColView(self._grid)
 
     def region(self, i: int, j: int):
+        # Get the set of possible regions where each
+        # index (i, j) could be for the i-th row and
+        # j-th column. The intersection of these two
+        # sets is the actual region where the (i, j)
+        # position is.
         a = self._row_regions_set(i)
         b = self._col_regions_set(j)
         return RegionView(self._grid, next(iter(a & b)))
