@@ -49,6 +49,14 @@ def parse_arguments() -> ap.Namespace:
         default=0.04,
         help='step delay, in seconds, when showing a step-by-step run'
     )
+    parser.add_argument(
+        '-b',
+        '--benchmark',
+        dest='benchmark',
+        action='store_true',
+        help='measure time taken to solve a sudoku, in seconds ' \
+             '(not recommended on step-by-step runs)'
+    )
     return parser.parse_args()
 
 
