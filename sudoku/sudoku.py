@@ -3,6 +3,7 @@
 '''
 '''
 
+import os
 import sys
 import argparse as ap
 
@@ -64,6 +65,13 @@ def main():
     args   = parse_arguments()
     board  = Board(args.filepath)
     solver = BacktrackSolver(args)
+
+    if args.visualize:
+        os.system('clear' if os.name is not 'nt' else 'cls')
+        print(str(board))
+        print('Press <ENTER> to begin...')
+        input()
+
     solver.solve(board)
     print(str(board))
     sys.exit(0)
