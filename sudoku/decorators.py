@@ -10,20 +10,24 @@ from functools import wraps
 from sudoku.utils import clear_screen
 
 
-
-def _show_board(*args):
+def _show_board(*args, depth):
     board = args[0]
     clear_screen()
     print(str(board))
+    print('depth={}'.format(depth))
 
 
 def visualizer(func, delay_secs):
+    recursion_depth = 0
     @wraps(func)
     def visualizer_wrapper(*args, **kwargs):
-        _show_board(*args)
+        nonlocal recursion_depth
+        _show_board(*args, depth=recursion_depth)
         time.sleep(delay_secs)
+        recursion_depth += 1
         value = func(*args, **kwargs)
-        _show_board(*args)
+        recursion_depth -= 1
+        _show_board(*args, depth=recursion_depth)
         return value
     return visualizer_wrapper
 
