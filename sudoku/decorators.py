@@ -14,7 +14,7 @@ def _show_board(*args, depth, calls):
     board = args[0]
     clear_screen()
     print(str(board))
-    print('depth={}, calls={:,}'.format(depth, calls))
+    print(f'depth={depth}, calls={calls:,}')
 
 
 def visualizer(func, delay_secs):
