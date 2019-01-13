@@ -4,15 +4,22 @@
 '''
 
 import os
+import argparse as ap
 
 from typing import List, Tuple
 
 from sudoku.models import Board
+from sudoku.decorators import visualizer, benchmark
 
 
 class BacktrackSolver:
-    def __init__(self):
+    def __init__(self, args: ap.Namespace):
         self._solved = None
+
+        if args.benchmark:
+            self.solve = benchmark(self.solve)
+        if args.visualize:
+            self._backtrack = visualizer(self._backtrack, args.delay_secs)
 
     def solve(self, board: Board):
         self._solved = False
