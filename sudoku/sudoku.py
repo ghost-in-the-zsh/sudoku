@@ -18,7 +18,7 @@ _epilog = 'This program uses a backtracking algorithm. To learn more '  \
 
 def parse_arguments() -> ap.Namespace:
     parser = ap.ArgumentParser(
-        description='A program to solve sudokus.',
+        description='A program to solve sudokus',
         formatter_class=ap.ArgumentDefaultsHelpFormatter,
         epilog=_epilog
     )
@@ -28,14 +28,17 @@ def parse_arguments() -> ap.Namespace:
         metavar='PATH',
         type=str,
         dest='filepath',
-        help='text file containing a 9x9 sudoku grid'
+        help='text file containing a 9x9 sudoku grid, where empty ' \
+             'entries are marked by any of the following symbols: ' \
+             '{}'.format(Board.EMPTY_CHARS)
     )
     parser.add_argument(
         '-s',
         '--show-steps',
         dest='show_steps',
         action='store_true',
-        help='shows a step-by-step run'
+        help='shows a step-by-step run by re-drawing the board on ' \
+             'each step'
     )
     parser.add_argument(
         '-d',
@@ -43,8 +46,8 @@ def parse_arguments() -> ap.Namespace:
         metavar='SECS',
         type=real_positive_number,
         dest='delay_secs',
-        default=0.02,
-        help='delay, in seconds, when using \'--show-steps\''
+        default=0.04,
+        help='step delay, in seconds, when showing a step-by-step run'
     )
     return parser.parse_args()
 
