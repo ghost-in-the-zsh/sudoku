@@ -33,9 +33,9 @@ def parse_arguments() -> ap.Namespace:
              '{}'.format(Board.EMPTY_CHARS)
     )
     parser.add_argument(
-        '-s',
-        '--show-steps',
-        dest='show_steps',
+        '-v',
+        '--visualize',
+        dest='visualize',
         action='store_true',
         help='shows a step-by-step run by re-drawing the board on ' \
              'each step'
