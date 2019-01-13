@@ -11,11 +11,16 @@ from sudoku.solver import BacktrackSolver
 from sudoku.validators import real_positive_number
 
 
+_epilog = 'This program uses a backtracking algorithm. To learn more '  \
+          'about backtracking and how it works, you can look at the '   \
+          'built-in pydoc3 documentation and README.md file.'
+
+
 def parse_arguments() -> ap.Namespace:
     parser = ap.ArgumentParser(
-        description='A sudoku solver',
+        description='A program to solve sudokus.',
         formatter_class=ap.ArgumentDefaultsHelpFormatter,
-        epilog='This program uses a backtracking algorithm.'
+        epilog=_epilog
     )
     parser.add_argument(
         '-f',
