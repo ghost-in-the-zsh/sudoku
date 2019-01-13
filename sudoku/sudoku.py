@@ -72,9 +72,14 @@ def main():
         print('Press <ENTER> to begin...')
         input()
 
-    solver.solve(board)
+    runtime = solver.solve(board)
+
     clear_screen()
     print(str(board))
+
+    if args.benchmark:
+        print(f'Solved in {runtime:.4f} secs')
+
     sys.exit(0)
 
 

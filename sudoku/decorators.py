@@ -25,10 +25,9 @@ def visualizer(func, delay_secs):
         _show_board(*args, depth=recursion_depth)
         time.sleep(delay_secs)
         recursion_depth += 1
-        value = func(*args, **kwargs)
+        func(*args, **kwargs)
         recursion_depth -= 1
         _show_board(*args, depth=recursion_depth)
-        return value
     return visualizer_wrapper
 
 
@@ -36,8 +35,7 @@ def benchmark(func):
     @wraps(func)
     def benchmark_wrapper(*args, **kwargs):
         start = time.perf_counter()
-        value = func(*args, **kwargs)
+        func(*args, **kwargs)
         delta = time.perf_counter() - start
-        print(f'Finished {func.__name__!r} in {delta:.4f} secs')
-        return value
+        return delta
     return benchmark_wrapper
