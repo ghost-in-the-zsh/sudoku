@@ -3,17 +3,17 @@
 '''
 '''
 
-import os, time
+import time
 
 from functools import wraps
 
+from sudoku.utils import clear_screen
 
-_clear = 'clear' if os.name is not 'nt' else 'cls'
 
 
 def _show_board(*args):
     board = args[0]
-    os.system(_clear)
+    clear_screen()
     print(str(board))
 
 

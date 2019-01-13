@@ -3,13 +3,13 @@
 '''
 '''
 
-import os
 import sys
 import argparse as ap
 
 from sudoku.models import Board
 from sudoku.solver import BacktrackSolver
 from sudoku.validators import real_positive_number
+from sudoku.utils import clear_screen
 
 
 _epilog = 'This program uses a backtracking algorithm. To learn more '  \
@@ -67,12 +67,13 @@ def main():
     solver = BacktrackSolver(args)
 
     if args.visualize:
-        os.system('clear' if os.name is not 'nt' else 'cls')
+        clear_screen()
         print(str(board))
         print('Press <ENTER> to begin...')
         input()
 
     solver.solve(board)
+    clear_screen()
     print(str(board))
     sys.exit(0)
 
