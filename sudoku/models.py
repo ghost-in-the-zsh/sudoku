@@ -5,71 +5,13 @@
 
 import os
 
-from collections import Sequence
-from itertools import chain
 from typing import Text, Tuple
+
+from sudoku.views import GridRowView, GridColumnView, GridRegionView
 
 
 class InvalidBoardError(RuntimeError):
     pass
-
-
-class RowView(Sequence):
-    def __init__(self, grid):
-        self._grid = grid
-
-    def __getitem__(self, i: int):
-        return self._grid[i]
-
-    def __len__(self):
-        return len(self._grid)
-
-
-class ColView(Sequence):
-    def __init__(self, grid):
-        self._grid = grid
-
-    def __getitem__(self, j: int):
-        return [self._grid[i][j] for i in range(len(self._grid))]
-
-    def __len__(self):
-        return len(self._grid[0])
-
-
-class RegionView(Sequence):
-    _RANGES = (
-        # row  ,  col
-        ((0, 3), (0, 3)),   # top left
-        ((0, 3), (3, 6)),   # top mid
-        ((0, 3), (6, 9)),   # top right
-
-        ((3, 6), (0, 3)),   # mid left
-        ((3, 6), (3, 6)),   # mid mid
-        ((3, 6), (6, 9)),   # mid right
-
-        ((6, 9), (0, 3)),   # bot left
-        ((6, 9), (3, 6)),   # bot mid
-        ((6, 9), (6, 9))    # bot right
-    )
-
-    def __init__(self, grid, rid: int):
-        self._grid = grid
-        self._rid  = rid
-
-    def __getitem__(self, i: int):
-        rows, cols = RegionView._RANGES[self._rid]
-        i0, i1  = rows
-        j0, j1  = cols
-        # create a flat list (not sub-grid) for all
-        # entries in the region, then return the i-th
-        # element
-        return list(
-            chain(*[r[j0:j1] for r in self._grid[i0:i1]])
-        )[i]
-
-    def __len__(self):
-        # regions are 3x3 matrices
-        return 9
 
 
 class Board:
@@ -90,33 +32,14 @@ class Board:
 
     @property
     def rows(self):
-        return RowView(self._grid)
+        return GridRowView(self._grid)
 
     @property
     def cols(self):
-        return ColView(self._grid)
+        return GridColumnView(self._grid)
 
     def region(self, i: int, j: int):
-        # Get the set of possible regions where each
-        # index (i, j) could be for the i-th row and
-        # j-th column. The intersection of these two
-        # sets is the actual region where the (i, j)
-        # position is.
-        a = self._row_regions_set(i)
-        b = self._col_regions_set(j)
-        return RegionView(self._grid, next(iter(a & b)))
-
-    def _row_regions_set(self, i: int):
-        g = ({a for a in range(b, b+3)} for b in range(0, Board.ROW_ENTRIES, 3))
-        for s in g:
-            if i in s: return s
-        return None
-
-    def _col_regions_set(self, j: int):
-        if j in (0, 1, 2): return {0, 3, 6}
-        if j in (3, 4, 5): return {1, 4, 7}
-        if j in (6, 7, 8): return {2, 5, 8}
-        return None
+        return GridRegionView(self._grid, i, j)
 
     def _load_from(self, filepath: Text):
         matrix = []
