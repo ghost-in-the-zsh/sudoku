@@ -37,8 +37,7 @@ class BacktrackSolver:
 
     def _candidates(self, board: Board, moves: List[Tuple[int, int]], k: int):
         clist = [False] + [True] * Board.ROW_ENTRIES
-        pos   = moves[k]
-        i, j  = pos
+        i, j  = moves[k]
         row   = board.rows[i]
         col   = board.cols[j]
         reg   = board.region(i, j)
