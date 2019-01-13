@@ -3,6 +3,8 @@
 from os.path import join, dirname
 from setuptools import setup, find_packages
 
+from sudoku.config import VERSION
+
 
 REQUIRED_PYTHON = (3, 6)
 
@@ -14,7 +16,7 @@ def readme():
 
 setup(
     name='sudoku',
-    version='0.1.0',
+    version=VERSION,
     python_requires='>={}.{}'.format(*REQUIRED_PYTHON),
     description='A sudoku solver.',
     long_description=readme(),

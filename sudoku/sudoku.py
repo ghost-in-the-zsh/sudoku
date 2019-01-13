@@ -10,6 +10,7 @@ from sudoku.models import Board
 from sudoku.solver import BacktrackSolver
 from sudoku.validators import real_positive_number
 from sudoku.utils import clear_screen
+from sudoku.config import VERSION
 
 
 _epilog = 'This program uses a backtracking algorithm. To learn more '  \
@@ -35,6 +36,12 @@ def parse_arguments() -> ap.Namespace:
     )
     parser.add_argument(
         '-v',
+        '--version',
+        action='version',
+        version='%(prog)s {}'.format(VERSION)
+    )
+    parser.add_argument(
+        '-i',
         '--visualize',
         dest='visualize',
         action='store_true',
