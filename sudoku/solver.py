@@ -3,7 +3,6 @@
 '''
 '''
 
-import os
 import argparse as ap
 
 from typing import List, Tuple

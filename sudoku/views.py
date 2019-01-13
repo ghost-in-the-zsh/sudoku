@@ -3,8 +3,6 @@
 '''
 '''
 
-import os
-
 from collections import Sequence
 from itertools import chain
 from typing import Text, List, Tuple
