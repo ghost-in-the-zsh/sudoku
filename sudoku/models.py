@@ -71,7 +71,7 @@ class Board:
         self._grid[i][j] = v
 
     def __str__(self):
-        limit = 3
+        limit = 3   # entries per region per row/col
         line  = '+---+---+---+' + os.linesep
         bar   = '|'
 
