@@ -61,7 +61,7 @@ def parse_arguments() -> ap.Namespace:
         '--benchmark',
         dest='benchmark',
         action='store_true',
-        help='measure time taken to solve a sudoku, in seconds ' \
+        help='measure the time taken to solve a sudoku, in seconds ' \
              '(not recommended on step-by-step runs)'
     )
     return parser.parse_args()
