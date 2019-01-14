@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-'''
-'''
+'''Main sudoku solving program.'''
 
 import sys
 import argparse as ap

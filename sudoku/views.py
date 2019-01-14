@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-'''
+'''Views module for board-backed grid views.
+
+The views provide read-only access to board grid data
+including rows, columns, and regions.
 '''
 
 from collections import Sequence

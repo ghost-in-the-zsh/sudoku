@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-'''
-'''
+'''Validators module to work with argparse options.'''
 
 import argparse as ap
 

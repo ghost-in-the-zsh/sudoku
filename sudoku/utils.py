@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-'''
-'''
+'''Utilities module for stand-alone functions.'''
 
 import os
 

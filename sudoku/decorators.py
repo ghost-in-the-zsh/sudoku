@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-'''
+'''Function decorators module.
+
+Decorators in this module allow dynamically adding responsibilities
+to existing functionality while keeping original functionality intact
+and decoupled. This includes benchmarking and visualization features.
 '''
 
 import time
