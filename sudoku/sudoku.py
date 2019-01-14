@@ -29,9 +29,9 @@ def parse_arguments() -> ap.Namespace:
         metavar='PATH',
         type=str,
         dest='filepath',
-        help='text file containing a 9x9 sudoku grid, where empty ' \
-             'entries are marked by any of the following symbols: ' \
-             '{}'.format(Board.EMPTY_CHARS)
+        help='file system path to text file containing a 9x9 '  \
+             'sudoku grid, where empty entries are marked by '  \
+             'any of the following symbols: {}'.format(Board.EMPTY_CHARS)
     )
     parser.add_argument(
         '-v',
