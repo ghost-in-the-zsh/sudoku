@@ -12,6 +12,10 @@ class InvalidBoardError(RuntimeError):
     pass
 
 
+class InvalidEntryError(RuntimeError):
+    pass
+
+
 class Board:
     '''A sudoku board.'''
     ROW_ENTRIES = 9
@@ -43,19 +47,22 @@ class Board:
         matrix = []
         with open(filepath, 'r') as grid:
             for row in grid:
-                matrix.append([
-                    Board.EMPTY_ENTRY if i in Board.EMPTY_CHARS else int(i)
-                    for i in row[:-1]   # skip newline
-                ])
+                try:
+                    matrix.append([
+                        Board.EMPTY_ENTRY if i in Board.EMPTY_CHARS else int(i)
+                        for i in row[:-1]   # skip newline
+                    ])
+                except ValueError as e:
+                    raise InvalidEntryError('entries must be in the [1,9] range')
         self._grid = matrix
 
     def _validate_grid(self):
         if len(self._grid) != Board.ROW_ENTRIES:
-            raise InvalidBoardError('grid row count is not {}'.format(Board.ROW_ENTRIES))
+            raise InvalidBoardError(f'number of rows is not {Board.ROW_ENTRIES}')
 
         for row in self._grid:
             if len(row) != Board.COL_ENTRIES:
-                raise InvalidBoardError('grid col count is not {}'.format(Board.COL_ENTRIES))
+                raise InvalidBoardError(f'number of columns is not {Board.COL_ENTRIES}')
 
     def __getitem__(self, pos: Tuple[int, int]):
         i, j = pos
@@ -63,7 +70,7 @@ class Board:
 
     def __setitem__(self, pos: Tuple[int, int], v: int):
         if v != Board.EMPTY_ENTRY and (v < Board.MIN_VALUE or v > Board.MAX_VALUE):
-            raise ValueError('invalid entry: {}'.format(str(v)))
+            raise InvalidEntryError(f'invalid entry: {v}')
 
         i, j = pos
         self._grid[i][j] = v
