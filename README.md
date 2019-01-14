@@ -37,10 +37,10 @@ Then, to install, you can run this, assuming Git is installed:
 $ pip3 install git+https://gitlab.com/ghost-in-the-zsh/sudoku.git
 ```
 
-If you do not have Git installed, then you should [download the `.tar.gz`](https://gitlab.com/ghost-in-the-zsh/sudoku) archive into a separate location, and then run this from within the same directory as the archive:
+If you do not have Git installed, then you should [download the archive](https://gitlab.com/ghost-in-the-zsh/sudoku) into a separate location, and then run this from within the same directory as the archive:
 
 ```bash
-$ pip3 install .
+$ pip3 install <archive.zip>
 ```
 
 
@@ -51,7 +51,13 @@ The syntax for Windows may vary and often depends on whether you have the Python
 The following should work:
 
 ```bash
-> py -m pip install <URL or path>
+> py -m pip install <URL or archive.zip>
+```
+
+You must make sure the Python installation directory for scripts is also in your `PATH` (e.g. `C:\Python3\Scripts`). You should be able to call the program directly as follows:
+
+```
+> sudoku-solver.exe [options]
 ```
 
 
@@ -92,6 +98,7 @@ README.md file.
 
 ### Puzzles
 
+
 #### Rules and Terminology
 
 You can look at [this page](https://www.sudoku.name/rules/en) for an explanation of the rules and basic terminology.
@@ -113,9 +120,9 @@ Sudoku boards must be stored in plain text files. The contents of the file must 
 1---6-9--
 ```
 
-The `-` characters denote empty entries. Other characters that can be used to mark empty entries include dots (`.`) and the number zero (`0`), which is considered an invalid entry value. (Valid entry values must be in the `[1,9]` range.)
+The `-` character denotes empty entries. Other alternatives include `.` and `0`. Since valid entries must be in the `[1,9]` range, `0` can be used to denote an empty one.
 
-While this would be a deviation from official rules, a board that's completely empty would be stored as follows:
+While this would be a deviation from official rules, a board that's completely empty could be stored as follows:
 
 ```txt
 ---------
@@ -129,7 +136,7 @@ While this would be a deviation from official rules, a board that's completely e
 ---------
 ```
 
-If your board is setup incorrectly (e.g. wrong number of rows, columns, entries, etc), the program will reject it.
+If your board is setup incorrectly (e.g. wrong number of rows, columns, invalid entries, etc), it will be rejected by the program with an error and a message.
 
 
 #### Concrete Examples
@@ -170,7 +177,7 @@ $ sudoku-solver --grid empty.txt --benchmark
 Solved in 0.0185 secs
 ```
 
-If we launch a visualized run with the `--visualize` option, then the board is presented to the user and begins solving on user command. As the run progresses, the board is re-drawn in its current state at the given step, including information about recursion depth and the number of attempts made so far.
+If we launch a visualized run with the `--visualize` option, then the board is presented to the user and begins solving after user confirmation. As the run progresses, the board is re-drawn in its current state at the given step, including information about recursion depth and the number of attempts made so far.
 
 A snapshot of a visualized run for the `hard.txt` board is below:
 
@@ -191,12 +198,12 @@ A snapshot of a visualized run for the `hard.txt` board is below:
 depth=5, calls=14
 ```
 
-When displayed, dots denote empty entries and the board is shown divided into 3x3 regions. [This YouTube video](https://youtu.be/kVewrrRwmwQ) shows a full visualized run of this problem.
+When displayed, dots denote empty entries and the board is shown divided into 3x3 regions. To watch a full visualized run of this problem, you can check out [this YouTube video](https://youtu.be/kVewrrRwmwQ).
 
 
-#### World's Hardest Sudoku
+#### World's Hardest Sudoku(?)
 
-According to this 2012 article[^1], the world's hardest sudoku was created by Finnish mathematician Arto Inkala. It's represented as:
+According to this 2012 article[^1], Arto Inkala, a Finnish mathematician, created what he claimed was the world's hardest sudoku. It's represented as follows:
 
 ```txt
 8--------
@@ -210,7 +217,40 @@ According to this 2012 article[^1], the world's hardest sudoku was created by Fi
 -9----4--
 ```
 
-This problem was solved by the program in 49,559 calls, taking an average of 1.88 seconds [^2].
+This problem was solved by the program in 49,559 calls, taking an average of 1.88 seconds [^2]. However, in the book _The Algorithm Design Manual, 2nd Ed._, Figure 7.2 in page 239 contains a "challenging" sudoku and its solution. It's represented below:
+
+```txt
+-------12
+----35---
+---6---7-
+7-----3--
+---4--8--
+1--------
+---12----
+-8-----4-
+-5----6--
+```
+
+This one was solved in ~279 seconds (~4m 35s):
+```txt
++---+---+---+
+|673|894|512|
+|912|735|486|
+|845|612|973|
++---+---+---+
+|798|261|354|
+|526|473|891|
+|134|589|267|
++---+---+---+
+|469|128|735|
+|287|356|149|
+|351|947|628|
++---+---+---+
+Solved in 278.5389 secs
+```
+
+Calling it "challenging" may've been an understatement.
+
 
 [^1]: [World's hardest sudoku: can you crack it?](https://www.telegraph.co.uk/news/science/science-news/9359579/Worlds-hardest-sudoku-can-you-crack-it.html)
 [^2]: Average of 3 runs.
