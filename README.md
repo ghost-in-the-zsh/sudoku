@@ -65,13 +65,13 @@ $ sudoku-solver [options]
 More detailed help is available with the `--help` option:
 ```bash
 $ sudoku-solver --help
-usage: sudoku-solver [-h] [-f PATH] [-v] [-i] [-d SECS] [-b]
+usage: sudoku-solver [-h] [-g PATH] [-v] [-i] [-d SECS] [-b]
 
 A program to solve sudokus
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f PATH, --file PATH  file system path to text file containing a 9x9 sudoku
+  -g PATH, --grid PATH  file system path to text file containing a 9x9 sudoku
                         grid, where empty entries are marked by any of the
                         following symbols: -.0 (default: None)
   -v, --version         show program's version number and exit
@@ -137,7 +137,7 @@ If your board is setup incorrectly (e.g. wrong number of rows, columns, entries,
 Assuming the boards above are stored in the files `hard.txt` and `empty.txt` respectively, you can launch the solver as follows:
 
 ```bash
-$ sudoku-solver --file hard.txt --benchmark
+$ sudoku-solver --grid hard.txt --benchmark
 +---+---+---+
 |358|216|479|
 |671|594|328|
@@ -153,7 +153,7 @@ $ sudoku-solver --file hard.txt --benchmark
 +---+---+---+
 Solved in 0.0057 secs
 
-$ sudoku-solver --file empty.txt --benchmark
+$ sudoku-solver --grid empty.txt --benchmark
 +---+---+---+
 |123|456|789|
 |456|789|123|

@@ -24,8 +24,8 @@ def parse_arguments() -> ap.Namespace:
         epilog=_epilog
     )
     parser.add_argument(
-        '-f',
-        '--file',
+        '-g',
+        '--grid',
         metavar='PATH',
         type=str,
         dest='filepath',
