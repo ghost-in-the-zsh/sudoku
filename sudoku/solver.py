@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-'''
+'''Solvers are able to solve sudokus.
+
+The solver currently available relies on a backtracking technique
+for its solving algorithm.
 '''
 
 import argparse as ap

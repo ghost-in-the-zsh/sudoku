@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-'''
-'''
+'''Models are are classes that encapsulate data.'''
 
 from os import linesep
 from typing import Text, Tuple
