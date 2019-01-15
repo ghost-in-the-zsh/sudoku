@@ -1,21 +1,8 @@
 '''A program to solve sudokus
 
-This program loads sudoku grids from text files and solves the puzzles,
-if they happen to have a solution. A grid is represented in a text file
-by following these rules:
-
-  * The text file must be created using a text editor (e.g. Notepad)
-    and not a word processor (e.g. MS Word, LibreOffice Writer, etc).
-  * Only one (1) grid may be specified per file.
-  * Grid dimensions must be 9x9, i.e. 9 rows with 9 columns each.
-  * Each grid entry must be one of the following:
-        - a valid entry value in the [1,9] range;
-        - an empty entry value denoted by any one of the
-          characters in the following set: {0, ., -}
-  * All pre-populated entries must follow the rules by not repeating
-    entry values in rows, columns, or regions.
-
-The following example shows a sudoku grid specification:
+This program loads sudoku puzzles from text files and solves them,
+if they happen to have a solution [1]. The following example shows
+a sudoku grid specification:
 
     --8-1---9
     6-1-9-32-
@@ -27,10 +14,23 @@ The following example shows a sudoku grid specification:
     -97-8-5-6
     1---6-9--
 
-In this example, the '-' character is used to denote empty entries
+A grid specification must follow these rules:
+
+    1. The text file must be created using a text editor (e.g. Notepad)
+       and not a word processor (e.g. MS Word, LibreOffice Writer, etc).
+    2. Only one (1) grid may be specified per file.
+    3. Grid dimensions must be 9x9, i.e. 9 rows with 9 columns each.
+    4. Each grid entry must be one of the following:
+        1. a valid entry value in the [1,9] range;
+        2. an empty entry value denoted by any one of the
+           characters in the following set: {0, ., -}
+    5. All pre-populated entries must follow the rules by not repeating
+       entry values in rows, columns, or regions.
+
+In our example, the '-' character is used to denote empty entries
 while pre-propulated entries are in the valid [1,9] range and follow
-the rules. This specification can be pasted into a text file and,
-without extra spaces or indentation, and used.
+the rules. This specification can be pasted into a text file and used,
+without spaces or indentation.
 
 If the grid above were stored in a file called "example.txt" in the
 current directory, then it can be used as follows:
@@ -39,7 +39,7 @@ current directory, then it can be used as follows:
 
 or
 
-    > sudoku-solver.exe -g example.txt  # In Windows [1]
+    > sudoku-solver.exe -g example.txt  # In Windows [2]
 
 To show additional program options and features, request help:
 
@@ -64,10 +64,10 @@ The basic steps are summarized below:
        where step 3 had left off.
 
 The program has a solution when it is able to apply step 3 until all
-empty entries have been filled [2].
+empty entries have been filled [1].
 
 Normally, the program only shows the board in its final solved
-state [2]. This is boring. If you want to see the program at work,
+state [1]. This is boring. If you want to see the program at work,
 step-by-step, then there are program options you can use to do this.
 
 Examples:
@@ -88,19 +88,21 @@ example:
 Do note that a visualized run will be significantly slower than a normal
 run; repeatedly drawing the board is very time consuming, so make sure
 your puzzle is not too complicated for this. (Consider using the example
-grid above.)
+grid above, as shown in this short video [3].)
 
 For a simple board, you might even want the run to be slower to see it
 better. In this case, you can use the '-d' option to tweak how long the
 delay between steps should be.
 
 
-[1] You may need to add your Python interpreter and its Scripts
-directory to your %PATH% variable manually for this to work. Otherwise,
-the program executable will not be found.
-
-[2] If it fails to fill the board completely, and all valid candidates
+[1]: If it fails to fill the board completely, and all valid candidates
 have been exhausted for all positions, then the given board has no
 solution. All valid boards must have at least one solution and boards
 following official rules have only one solution.
+
+[2]: You may need to add your Python interpreter and its Scripts
+directory to your %PATH% variable manually for this to work. Otherwise,
+the program executable will not be found.
+
+[3]: https://youtu.be/kVewrrRwmwQ
 '''
