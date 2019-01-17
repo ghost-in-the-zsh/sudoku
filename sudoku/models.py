@@ -86,6 +86,6 @@ class Board:
                 v  = str(self._grid[i][j]) if self._grid[i][j] != Board.EMPTY_ENTRY else Board.EMPTY_CHAR
                 s += bar + v if j % limit == 0 else v
             s += bar + linesep
-            if (i+1) % limit == 0: s += line
+            if (i + 1) % limit == 0: s += line
 
         return s[:-1]   # remove newline
