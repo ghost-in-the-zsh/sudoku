@@ -25,7 +25,7 @@ class BacktrackSolver:
 
     def solve(self, board: Board):
         self._solved = False
-        moves = self._analyze(board)
+        moves = self._empty_positions(board)
         self._backtrack(board, moves, 0)
 
     def _backtrack(self, board: Board, moves: List[Tuple[int, int]], k: int):
@@ -67,7 +67,7 @@ class BacktrackSolver:
         i, j = moves[k]
         board[i, j] = Board.EMPTY_ENTRY
 
-    def _analyze(self, board: Board):
+    def _empty_positions(self, board: Board):
         return [
             (i, j)
             for i in range(Board.ROW_ENTRIES)
