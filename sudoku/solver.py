@@ -34,7 +34,7 @@ class BacktrackSolver:
             return
 
         candidates = self._candidates(board, moves, k)
-        for c in range(1, len(candidates)):
+        for c in range(Board.MIN_VALUE, Board.MAX_VALUE + 1):
             if candidates[c]:
                 self._add_entry(board, moves, k, c)
                 self._backtrack(board, moves, k+1)
@@ -53,7 +53,7 @@ class BacktrackSolver:
 
         # tag as unusable any candidate 'c' in the [1,9]
         # range that's already used in a row/col/region
-        for c in range(1, Board.ROW_ENTRIES + 1):
+        for c in range(Board.MIN_VALUE, Board.MAX_VALUE + 1):
             if c in row or c in col or c in reg:
                 clist[c] = False
 
