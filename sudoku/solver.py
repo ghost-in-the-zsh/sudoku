@@ -68,9 +68,9 @@ class BacktrackSolver:
         board[i, j] = Board.EMPTY_ENTRY
 
     def _analyze(self, board: Board):
-        moves = []
-        for i in range(len(board.rows)):
-            for j in range(len(board.rows[i])):
-                if board[i, j] == Board.EMPTY_ENTRY:
-                    moves.append((i, j))
-        return moves
+        return [
+            (i, j)
+            for i in range(Board.ROW_ENTRIES)
+            for j in range(Board.COL_ENTRIES)
+            if board[i, j] == Board.EMPTY_ENTRY
+        ]
