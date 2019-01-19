@@ -81,9 +81,10 @@ class Board:
         bar   = '|'
 
         s = line
-        for i in range(len(self._grid)):
-            for j in range(len(self._grid[i])):
-                v  = str(self._grid[i][j]) if self._grid[i][j] != Board.EMPTY_ENTRY else Board.EMPTY_CHAR
+        g = self._grid
+        for i in range(Board.ROW_ENTRIES):
+            for j in range(Board.COL_ENTRIES):
+                v  = str(g[i][j]) if g[i][j] != Board.EMPTY_ENTRY else Board.EMPTY_CHAR
                 s += bar + v if j % limit == 0 else v
             s += bar + linesep
             if (i + 1) % limit == 0: s += line
