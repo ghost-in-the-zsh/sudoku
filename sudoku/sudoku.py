@@ -68,8 +68,8 @@ def parse_arguments() -> ap.Namespace:
 
 
 def main():
-    args   = parse_arguments()
-    board  = Board(args.filepath)
+    args = parse_arguments()
+    board = Board(args.filepath)
     solver = BacktrackSolver(args)
 
     if args.visualize:

@@ -46,10 +46,10 @@ class BacktrackSolver:
 
     def _candidates(self, board: Board, moves: List[Tuple[int, int]], k: int):
         clist = [False] + [True] * Board.ROW_ENTRIES
-        i, j  = moves[k]
-        row   = board.rows[i]
-        col   = board.cols[j]
-        reg   = board.region(i, j)
+        i, j = moves[k]
+        row = board.rows[i]
+        col = board.cols[j]
+        reg = board.region(i, j)
 
         # tag as unusable any candidate 'c' in the [1,9]
         # range that's already used in a row/col/region

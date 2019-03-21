@@ -23,9 +23,9 @@ class Board:
     MAX_ENTRIES = ROW_ENTRIES * COL_ENTRIES
     EMPTY_ENTRY = 0
     EMPTY_CHARS = '-.0'
-    EMPTY_CHAR  = '.'
-    MIN_VALUE   = 1
-    MAX_VALUE   = 9
+    EMPTY_CHAR = '.'
+    MIN_VALUE = 1
+    MAX_VALUE = 9
 
     def __init__(self, filepath: Text):
         self._grid = None
@@ -77,8 +77,8 @@ class Board:
 
     def __str__(self):
         limit = 3   # entries per region per row/col
-        line  = '+---+---+---+' + linesep
-        bar   = '|'
+        line = '+---+---+---+' + linesep
+        bar = '|'
 
         s = line
         g = self._grid
