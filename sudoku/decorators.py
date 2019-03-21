@@ -9,6 +9,7 @@ and decoupled. This includes benchmarking and visualization features.
 
 import time
 
+from typing import Callable
 from functools import wraps
 
 from sudoku.utils import clear_screen
@@ -21,7 +22,7 @@ def _show_board(*args, depth, calls):
     print(f'depth={depth}, calls={calls:,}')
 
 
-def visualizer(func, delay_secs):
+def visualizer(func: Callable, delay_secs: int) -> Callable:
     recursion_depth = 0
     recursion_calls = 0
     @wraps(func)
@@ -38,7 +39,7 @@ def visualizer(func, delay_secs):
     return visualizer_wrapper
 
 
-def benchmark(func):
+def benchmark(func: Callable) -> Callable:
     @wraps(func)
     def benchmark_wrapper(*args, **kwargs):
         start = time.perf_counter()
